@@ -34,15 +34,13 @@ function playRound(humanChoice, computerChoice) {
         case "rock":
             switch (computerChoice) {
                 case "rock":
-                    confirm("No one wins")
+                    if(confirm("No one wins"))
                     break
                 case "paper":
-                    confirm("You lost")
-                    computerScore++
+                    if(confirm("You lost")) computerScore++
                     break
                 case "scissors":
-                    confirm("You won")
-                    humanScore++
+                    if(confirm("You won")) humanScore++
                     break
                 default:
                     break
@@ -51,15 +49,14 @@ function playRound(humanChoice, computerChoice) {
         case "paper":
             switch (computerChoice) {
                 case "rock":
-                    confirm("You won")
-                    humanScore++
+                    if(confirm("You won")) humanScore++
                     break
                 case "paper":
-                    confirm("No one wins")
+                    if(confirm("No one wins"))
                     break
                 case "scissors":
-                    confirm("You lost")
-                    computerScore++
+                    if(confirm("You lost")) computerScore++
+                    break
                 default:
                     break
             }
@@ -67,15 +64,14 @@ function playRound(humanChoice, computerChoice) {
         case "scissors":
             switch (computerChoice) {
                 case "rock":
-                    confirm("You lost")
-                    computerScore++
+                    if(confirm("You lost")) computerScore++
                     break
                 case "paper":
-                    confirm("You won")
-                    humanScore++
+                    if(confirm("You won")) humanScore++
                     break
                 case "scissors":
-                    confirm("No one wins")
+                    if(confirm("No one wins"))
+                    break
                 default:
                     break
             }
@@ -85,7 +81,7 @@ function playRound(humanChoice, computerChoice) {
 }
 
 function playGame() {
-    confirm("Game started. The first one to win 5 rounds wins the game.")
+    if(confirm("Game started. The first one to win 5 rounds wins the game."))
     while(computerScore < 5 && humanScore < 5) {
         playRound(getHumanChoice(), getComputerChoice())
     }
