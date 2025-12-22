@@ -17,7 +17,15 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-    return prompt("Rock, paper, scissors. Choose:")
+    let input = prompt("Rock, paper, scissors. Choose:")
+    let choice
+    if(input == "rock" || input == "Rock" || input == "ROCK" || input == "RocK") {
+        return "rock"
+    } else if (input == "paper" || input == "Paper" || input == "PAPER" || input == "PapeR") {
+        return "paper"
+    } else if (input == "scissors" || input == "Scissors" || input == "SCISSORS" || input == "ScissorS") {
+        return "scissors"
+    }
 }
 
 
@@ -30,9 +38,11 @@ function playRound(humanChoice, computerChoice) {
                     break
                 case "paper":
                     console.log("You lost")
+                    computerScore++
                     break
                 case "scissors":
                     console.log("You won")
+                    humanScore++
                     break
                 default:
                     break
@@ -42,12 +52,14 @@ function playRound(humanChoice, computerChoice) {
             switch (computerChoice) {
                 case "rock":
                     console.log("You won")
+                    humanScore++
                     break
                 case "paper":
                     console.log("No one wins")
                     break
                 case "scissors":
                     console.log("You lost")
+                    computerScore++
                 default:
                     break
             }
@@ -56,9 +68,11 @@ function playRound(humanChoice, computerChoice) {
             switch (computerChoice) {
                 case "rock":
                     console.log("You lost")
+                    computerScore++
                     break
                 case "paper":
                     console.log("You won")
+                    humanScore++
                     break
                 case "scissors":
                     console.log("No one wins")
@@ -70,4 +84,16 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-playRound(getHumanChoice(), getComputerChoice())
+function playGame() {
+    console.log("Game started. The first one to win 5 rounds wins the game.")
+    while(computerScore < 5 || humanScore < 5) {
+        playRound(getHumanChoice(), getComputerChoice())
+    }
+    if(humanScore == 5) {
+        console.log("You won the game!")
+    } else if (computerScore == 5) {
+        console.log("You lost the game.")
+    }
+}
+
+playGame()
