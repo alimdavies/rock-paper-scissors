@@ -86,7 +86,7 @@ function playRound(humanChoice, computerChoice) {
 
 function playGame() {
     console.log("Game started. The first one to win 5 rounds wins the game.")
-    while(computerScore < 5 || humanScore < 5) {
+    while(computerScore < 5 && humanScore < 5) {
         playRound(getHumanChoice(), getComputerChoice())
     }
     if(humanScore == 5) {
