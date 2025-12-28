@@ -1,6 +1,13 @@
 let humanScore = 0
 let computerScore = 0
 
+const rockBtn = document.querySelector('#rockBtn')
+const paperBtn = document.querySelector('#paperBtn')
+const scissorsBtn = document.querySelector('#scissorsBtn')
+const buttonsContainer = document.querySelector('#buttonsContainer')
+
+
+
 function getComputerChoice() {
     let choice = Math.floor(Math.random() * 3) + 1
     switch (choice) {
@@ -17,15 +24,10 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-    let input = prompt("Rock, paper, scissors. Choose:")
-    let choice
-    if(input == "rock" || input == "Rock" || input == "ROCK" || input == "RocK") {
-        return "rock"
-    } else if (input == "paper" || input == "Paper" || input == "PAPER" || input == "PapeR") {
-        return "paper"
-    } else if (input == "scissors" || input == "Scissors" || input == "SCISSORS" || input == "ScissorS") {
-        return "scissors"
-    }
+    buttonsContainer.addEventListener('click', (e) => {
+        e.preventDefault()
+        return e.target.name
+    })
 }
 
 
@@ -91,5 +93,3 @@ function playGame() {
         confirm("You lost the game.")
     }
 }
-
-playGame()
