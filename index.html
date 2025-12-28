@@ -6,12 +6,17 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Make your choice</h1>
+    <div id="scoreBoard">
+        <span>You: <span id="humanScore">0</span></span>
+        <span style="padding-left: 20px;">Computer: <span id="computerScore">0</span></span>
+    </div>
+    <h2 style="margin-bottom: 5px;">Make your choice</h1>
     <div id="buttonsContainer">
         <button id="rockBtn" name="rock">Rock</button>
         <button id="paperBtn" name="paper">Paper</button>
         <button id="scissorsBtn" name="scissors">Scissors</button>
     </div>
+    <div id="results"></div>
     <script src="script.js"></script>
 </body>
 </html>

@@ -5,8 +5,15 @@ const rockBtn = document.querySelector('#rockBtn')
 const paperBtn = document.querySelector('#paperBtn')
 const scissorsBtn = document.querySelector('#scissorsBtn')
 const buttonsContainer = document.querySelector('#buttonsContainer')
+const results = document.querySelector('#results')
+const scoreBoard = document.querySelector('#scoreBoard')
+const humanScoreBoard = document.querySelector('#humanScore')
+const computerScoreBoard = document.querySelector('#computerScore')
 
+const playAgainBtn = document.createElement('button')
+playAgainBtn.textContent = "Play again"
 
+rockBtn.disabled = false
 
 function getComputerChoice() {
     let choice = Math.floor(Math.random() * 3) + 1
@@ -23,26 +30,38 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    buttonsContainer.addEventListener('click', (e) => {
-        e.preventDefault()
-        return e.target.name
+buttonsContainer.addEventListener('click', (e) => {
+    e.preventDefault()
+    playRound(e.target.name, getComputerChoice())
+})
+
+function playAgain() {
+    document.body.appendChild(playAgainBtn)
+    playAgainBtn.addEventListener('click', () => {
+        rockBtn.disabled = false
+        paperBtn.disabled = false
+        scissorsBtn.disabled = false
+        results.textContent = ""
+        document.body.removeChild(playAgainBtn)
+        humanScore = 0
+        computerScore = 0
     })
 }
-
 
 function playRound(humanChoice, computerChoice) {
     switch(humanChoice) {
         case "rock":
             switch (computerChoice) {
                 case "rock":
-                    if(confirm("No one wins"))
+                    results.textContent = "No one wins"
                     break
                 case "paper":
-                    if(confirm("You lost")) computerScore++
+                    results.textContent = "You loose"
+                    computerScore++
                     break
                 case "scissors":
-                    if(confirm("You won")) humanScore++
+                    results.textContent = "You win"
+                    humanScore++
                     break
                 default:
                     break
@@ -51,13 +70,15 @@ function playRound(humanChoice, computerChoice) {
         case "paper":
             switch (computerChoice) {
                 case "rock":
-                    if(confirm("You won")) humanScore++
+                    results.textContent = "You win" 
+                    humanScore++
                     break
                 case "paper":
-                    if(confirm("No one wins"))
+                    results.textContent = "No one wins"
                     break
                 case "scissors":
-                    if(confirm("You lost")) computerScore++
+                    results.textContent = "You loose" 
+                    computerScore++
                     break
                 default:
                     break
@@ -66,30 +87,36 @@ function playRound(humanChoice, computerChoice) {
         case "scissors":
             switch (computerChoice) {
                 case "rock":
-                    if(confirm("You lost")) computerScore++
+                    results.textContent = "You loose" 
+                    computerScore++
                     break
                 case "paper":
-                    if(confirm("You won")) humanScore++
+                    results.textContent = "You win" 
+                    humanScore++
                     break
                 case "scissors":
-                    if(confirm("No one wins"))
+                    results.textContent = "No one wins"
                     break
                 default:
                     break
             }
+            break
         default:
             break
     }
-}
-
-function playGame() {
-    if(confirm("Game started. The first one to win 5 rounds wins the game."))
-    while(computerScore < 5 && humanScore < 5) {
-        playRound(getHumanChoice(), getComputerChoice())
-    }
-    if(humanScore == 5) {
-        confirm("You won the game!")
-    } else if (computerScore == 5) {
-        confirm("You lost the game.")
+    humanScoreBoard.textContent = humanScore
+    computerScoreBoard.textContent = computerScore
+    if(humanScore === 5) {
+        results.textContent = "You won the game"
+        rockBtn.disabled = true
+        paperBtn.disabled = true
+        scissorsBtn.disabled = true
+        playAgain()
+    } else if (computerScore === 5) {
+        results.textContent = "You lost the game"
+        rockBtn.disabled = true
+        paperBtn.disabled = true
+        scissorsBtn.disabled = true
+        playAgain()
     }
 }
